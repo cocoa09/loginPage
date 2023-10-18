@@ -1,0 +1,78 @@
+
+
+<LoginManager>:
+    LoginScreen:
+        name: "login screen"
+    WelcomeScreen:
+        name: "welcome"
+    NewAccountScreen:
+        name: "new account"
+
+<LoginScreen>:
+
+    BoxLayout:
+        orientation:"vertical"
+        spacing:"10"
+        Label:
+            text:"login"
+        GridLayout:
+            orientation:"lr-tb"
+            rows:2
+            columns:2
+            Label:
+                text:"Username"
+                size_hint:.2,.2
+            TextInput:
+                id: username
+                size_hint:.3,.1
+            Label:
+                text:"Password"
+                size_hint:.2,.2
+            TextInput:
+                id: password
+                size_hint:.3,.1
+        Button:
+            text:"create a new account"
+            on_release: root.newacc()
+        Button:
+            text:"enter"
+            on_release: root.welcome(username.text,password.text)
+<WelcomeScreen>:
+    BoxLayout:
+        spacing: "10dp"
+        orientation: "vertical"
+        Label:
+            text: "welcome"
+        Button:
+            text: "logout"
+            on_release: root.advance()
+
+<NewAccountScreen>:
+    BoxLayout:
+        orientation:"vertical"
+        Label:
+            text:"New Account"
+        GridLayout:
+            orientation:"lr-tb"
+            rows:3
+            columns:2
+            Label:
+                text:"enter new username"
+            TextInput:
+                id: username_Input
+            Label:
+                text:"enter new password"
+            TextInput:
+                id: password_Input
+            Label:
+                text:"reenter new password"
+            TextInput:
+                id: password_Input2
+        Label:
+            text:"Password must contain at least one-\n -capital letter\n -lowercase letter\n - number(1234567890)\n -special character(~!@#$%^&*()? "
+        Button:
+            text:"enter"
+            on_release:root.register_to_login(username_Input.text, password_Input.text, password_Input2.text)
+        Label:
+            text:""
+            id: error
